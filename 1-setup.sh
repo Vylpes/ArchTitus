@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-#-------------------------------------------------------------------------
-#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-#  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
-#-------------------------------------------------------------------------
 echo "--------------------------------------"
 echo "--          Network Setup           --"
 echo "--------------------------------------"
@@ -30,13 +22,13 @@ echo "Changing the compression settings for "$nc" cores."
 sed -i "s/COMPRESSXZ=(xz -c -z -)/COMPRESSXZ=(xz -c -T $nc -z -)/g" /etc/makepkg.conf
 fi
 echo "-------------------------------------------------"
-echo "       Setup Language to US and set locale       "
+echo "       Setup Language to GB and set locale       "
 echo "-------------------------------------------------"
-sed -i 's/^#en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen
+sed -i 's/^#en_GB.UTF-8 UTF-8/en_GB.UTF-8 UTF-8/' /etc/locale.gen
 locale-gen
-timedatectl --no-ask-password set-timezone America/Chicago
+timedatectl --no-ask-password set-timezone Europe/London
 timedatectl --no-ask-password set-ntp 1
-localectl --no-ask-password set-locale LANG="en_US.UTF-8" LC_TIME="en_US.UTF-8"
+localectl --no-ask-password set-locale LANG="en_GB.UTF-8" LC_TIME="en_GB.UTF-8"
 
 # Set keymaps
 localectl --no-ask-password set-keymap us
@@ -61,145 +53,57 @@ PKGS=(
 'xorg-drivers'
 'xorg-xkill'
 'xorg-xinit'
-'xterm'
-'plasma-desktop' # KDE Load second
-'alsa-plugins' # audio plugins
-'alsa-utils' # audio utils
-'ark' # compression
-'audiocd-kio' 
-'autoconf' # build
-'automake' # build
 'base'
-'bash-completion'
-'bind'
-'binutils'
-'bison'
-'bluedevil'
-'bluez'
-'bluez-libs'
-'bluez-utils'
-'breeze'
-'breeze-gtk'
-'bridge-utils'
-'btrfs-progs'
-'celluloid' # video players
-'cmatrix'
-'code' # Visual Studio code
-'cronie'
-'cups'
-'dialog'
-'discover'
-'dolphin'
-'dosfstools'
-'dtc'
 'efibootmgr' # EFI boot
-'egl-wayland'
-'exfat-utils'
-'extra-cmake-modules'
-'filelight'
-'flex'
-'fuse2'
-'fuse3'
-'fuseiso'
-'gamemode'
-'gcc'
-'gimp' # Photo editing
-'git'
-'gparted' # partition management
-'gptfdisk'
 'grub'
-'grub-customizer'
-'gst-libav'
-'gst-plugins-good'
-'gst-plugins-ugly'
-'gwenview'
-'haveged'
-'htop'
-'iptables-nft'
-'jdk-openjdk' # Java 17
-'kate'
-'kcodecs'
-'kcoreaddons'
-'kdeplasma-addons'
-'kde-gtk-config'
-'kinfocenter'
-'kscreen'
-'kvantum-qt5'
-'kitty'
-'konsole'
-'kscreen'
-'layer-shell-qt'
-'libdvdcss'
-'libnewt'
-'libtool'
 'linux'
 'linux-firmware'
-'linux-headers'
-'lsof'
-'lutris'
-'lzop'
-'m4'
-'make'
-'milou'
-'nano'
-'neofetch'
-'networkmanager'
-'ntfs-3g'
-'ntp'
-'okular'
-'openbsd-netcat'
-'openssh'
-'os-prober'
-'oxygen'
-'p7zip'
-'pacman-contrib'
-'patch'
-'picom'
-'pkgconf'
-'plasma-meta'
-'plasma-nm'
-'powerdevil'
-'powerline-fonts'
-'print-manager'
-'pulseaudio'
-'pulseaudio-alsa'
-'pulseaudio-bluetooth'
-'python-notify2'
-'python-psutil'
-'python-pyqt5'
-'python-pip'
-'qemu'
-'rsync'
-'sddm'
-'sddm-kcm'
-'snapper'
-'spectacle'
-'steam'
-'sudo'
-'swtpm'
-'synergy'
-'systemsettings'
-'terminus-font'
-'traceroute'
 'ufw'
-'unrar'
-'unzip'
-'usbutils'
 'vim'
-'virt-manager'
-'virt-viewer'
 'wget'
-'which'
-'wine-gecko'
-'wine-mono'
-'winetricks'
-'xdg-desktop-portal-kde'
-'xdg-user-dirs'
-'zeroconf-ioslave'
 'zip'
+'unzip'
 'zsh'
-'zsh-syntax-highlighting'
-'zsh-autosuggestions'
+'alacritty'
+'alsa-firmware'
+'alsa-lib'
+'alsa-plugins'
+'pavucontrol'
+'alsa-utils'
+'cmatrix'
+'cups'
+'sudo'
+'dunst'
+'dotnet-sdk-3.1'
+'aspnet-runtime-3.1'
+'flameshot'
+'gimp'
+'lightdm'
+'lightdm-webkit2-greeter'
+'networkmanager'
+'nitrogen'
+'nodejs-lts-fermium' # Need v14 for work
+'npm'
+'nvidia'
+'mesa'
+'openssh'
+'picom'
+'rofi'
+'rofi-emoji'
+'vim'
+'xmonad'
+'xmobar'
+'neofetch'
+'sxiv'
+'htop'
+'docker'
+'docker-compose'
+'ufw'
+'noto-fonts-emoji'
+'cargo'
+'ttf-hack'
+'firefox'
+'unclutter'
 )
 
 for PKG in "${PKGS[@]}"; do
@@ -237,14 +141,15 @@ fi
 echo -e "\nDone!\n"
 if ! source install.conf; then
 	read -p "Please enter username:" username
-echo "username=$username" >> ${HOME}/ArchTitus/install.conf
+echo "username=$username" >> ${HOME}/ArchV/install.conf
 fi
 if [ $(whoami) = "root"  ];
 then
     useradd -m -G wheel,libvirt -s /bin/bash $username 
 	passwd $username
-	cp -R /root/ArchTitus /home/$username/
-    chown -R $username: /home/$username/ArchTitus
+	cp -R /root/ArchV /home/$username/
+    chown -R $username: /home/$username/ArchV
+    usermod -aG $username wheel,docker,storage,audio,video
 	read -p "Please name your machine:" nameofmachine
 	echo $nameofmachine > /etc/hostname
 else

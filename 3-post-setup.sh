@@ -1,13 +1,4 @@
 #!/usr/bin/env bash
-#-------------------------------------------------------------------------
-#   █████╗ ██████╗  ██████╗██╗  ██╗████████╗██╗████████╗██╗   ██╗███████╗
-#  ██╔══██╗██╔══██╗██╔════╝██║  ██║╚══██╔══╝██║╚══██╔══╝██║   ██║██╔════╝
-#  ███████║██████╔╝██║     ███████║   ██║   ██║   ██║   ██║   ██║███████╗
-#  ██╔══██║██╔══██╗██║     ██╔══██║   ██║   ██║   ██║   ██║   ██║╚════██║
-#  ██║  ██║██║  ██║╚██████╗██║  ██║   ██║   ██║   ██║   ╚██████╔╝███████║
-#  ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝   ╚═╝   ╚═╝   ╚═╝    ╚═════╝ ╚══════╝
-#-------------------------------------------------------------------------
-
 echo -e "\nFINAL SETUP AND CONFIGURATION"
 echo "--------------------------------------"
 echo "-- GRUB EFI Bootloader Install&Check--"
@@ -20,12 +11,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 # ------------------------------------------------------------------------
 
 echo -e "\nEnabling Login Display Manager"
-systemctl enable sddm.service
-echo -e "\nSetup SDDM Theme"
-cat <<EOF > /etc/sddm.conf
-[Theme]
-Current=Nordic
-EOF
+systemctl enable lightdm.service
 
 # ------------------------------------------------------------------------
 
@@ -38,6 +24,7 @@ systemctl disable dhcpcd.service
 systemctl stop dhcpcd.service
 systemctl enable NetworkManager.service
 systemctl enable bluetooth
+systemctl enable docker
 echo "
 ###############################################################################
 # Cleaning
